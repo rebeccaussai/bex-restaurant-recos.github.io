@@ -1,0 +1,40 @@
+h1 {
+	font-family: 'IBM Plex Mono', monospace;
+	margin: 100px 0px 100px 20px;
+}
+
+.tile {
+	width: 300px;
+	height: 400px;
+	border: 3px solid black;
+	display: inline-block;
+	margin: 15px;
+}
+
+h3 {
+	font-family: 'IBM Plex Mono', monospace;
+	text-align: center;
+}
+
+.tile_img {
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+}
+
+p {
+	font-family: 'IBM Plex Mono', monospace;
+	padding: 0px 20px;
+	font-size: 12px;
+}
+
+.sub-title {
+	font-family: 'IBM Plex Mono', monospace;
+	font-weight: bold;
+}
+
+#map {
+	width: 1200px;
+	height: 400px;
+	margin: 100px auto;
+	border: 3px solid black;
+}
