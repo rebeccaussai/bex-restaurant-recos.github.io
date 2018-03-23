@@ -4,10 +4,25 @@ var source = $('#restaurant-template').html();
 // 2. use handlebars compile
 var template = Handlebars.compile(source);
 
+var restaurants = [
+	{
+		"name": "Big Star",
+		"image": "images/big_star.jpg",
+		"description": "description of big star",
+		"address": "123 Main St. Chicago, IL 60614",
+		"hours": "API data11 am - 11 pm"
+	}
+];
+
+var request = {
+  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
+};
+
+
 
 // 3. is this where my object constructor goes????
 //constructor function to create a restaurant tile object
-var restaurant = function (name, image, description, address, hours) {
+var Restaurant = function (name, image, description, address, hours) {
 	this.name = name;
 	this.image = image;
 	this.description = description;
@@ -16,20 +31,30 @@ var restaurant = function (name, image, description, address, hours) {
 };
 
 // 4. pass it into template
-var newTile = template(restaurant);
 
 // add a new tile
-var bigStar = new restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
+for (var i = 0; i < restaurants.length; i++) {
+	var r = restaurants[i];
 
-// append html to the DOM 
-$('#allTiles').html(newTile);
+	var restaurant = new Restaurant(r.name, r.image, r.description, r.address, r.hours);
+
+	var newTile = template(restaurant);
+
+	$('#allTiles').append(newTile);
+
+}
+//var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
+
+// var newTile = template(bigStar);
+
+// append html to the DOM
 
 
 
-// animate tiles - not currently working up or down 
+// animate tiles - not currently working up or down
 $(".tile").hover(function(){
     $(this).animate({down: '20px'});
-}); 
+});
 
 
 
@@ -82,11 +107,11 @@ function initMap(){
         			coords: {lat: 41.909, lng: -87.677},
         			iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
         			content: '<h3>Big Star</h3>'
-        		}, 
+        		},
         		{
         			coords: {lat: 41.907, lng: -87.667},
         			content: '<h3> Mott St. </h3>'
-        		}, 
+        		},
         		{
         			coords: {lat: 41.882, lng: -87.652},
         			content: '<h3>Monteverde</h3>'
@@ -96,7 +121,7 @@ function initMap(){
         			content: '<h3>beermiscuous</h3>',
         			// trying to add custom icon
         			//iconImage: circleIcon
-        			
+
         		}
         	];
 
@@ -104,7 +129,7 @@ function initMap(){
         	for (var i=0; i < markers.length; i++) {
         		//add marker
         		addMarker(markers[i]);
-        		
+
         	}
 
         	// old hardcode way
@@ -128,7 +153,7 @@ function initMap(){
 	          		map: map,
 	          		//icon: props.iconImage
 
-	        	});   
+	        	});
 	        // check for custom icon
 	        	if(props.iconImage){
 	        		// set icon image
@@ -147,7 +172,7 @@ function initMap(){
         			marker.addListener('click', function(){
         					infoWindow.open(map, marker);
         			});
-	        	}   		
+	        	}
         	}
 		}
 
