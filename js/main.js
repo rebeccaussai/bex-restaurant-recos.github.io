@@ -6,17 +6,82 @@ var template = Handlebars.compile(source);
 
 var restaurants = [
 	{
-		"name": "Big Star",
+		"name": "1. Big Star",
 		"image": "images/big_star.jpg",
-		"description": "description of big star",
-		"address": "123 Main St. Chicago, IL 60614",
-		"hours": "API data11 am - 11 pm"
-	}
+		"description": "Mexican street food, plus margaritas & other drinks fuel a lively scene at this funky hangout.",
+		"address": "1531 N Damen Ave, Chicago, IL 60622",
+		"hours": "11 am - 11 pm"
+	},
+    {
+        "name": "2. Mott St.",
+        "image": "images/mottst.jpg",
+        "description": "Asian-inspired plates &amp; craft cocktails served amid funky furnishings &amp; communal tables.",
+        "address": "1401 N Ashland Ave, Chicago, IL 60622",
+        "hours": "11 am - 11 pm"
+    },
+    {
+        "name": "3. Monteverde",
+        "image": "images/monteverde.jpg",
+        "description": "Stylish spot serving refined, contemporary Italian fare such as fresh pastas, plus global wines.",
+        "address": "1020 W Madison St, Chicago, IL 60607",
+        "hours": "11 am - 11 pm"
+    },
+    {
+        "name": "4. Beermiscuous",
+        "image": "images/beermiscuous.jpg",
+        "description": "Beer-oriented spot offering 300+ craft brews in a hip, rustic space with a cafe vibe &amp; free WiFi.",
+        "address": "2812 N Lincoln Ave, Chicago, IL 60657",
+        "hours": "11 am - 11 pm"
+    },
+    {
+        "name": "5. DMK",
+        "image": "images/dmk.jpg",
+        "description": "Trendy scene where creative burgers go with fries, housemade sodas, craft cocktails & lots of beers.",
+        "address": "2954 N Sheffield Ave, Chicago, IL 60657",
+        "hours": "11 am - 11 pm"
+    }, {
+        "name": "6. Giant",
+        "image": "images/giant.jpg",
+        "description": "Seasonal New American plates & craft cocktails are served in a funky storefront with local art.",
+        "address": "3209 W Armitage Ave, Chicago, IL 60647",
+        "hours": "11 am - 11 pm"
+    }, {
+        "name": "7. Pequod's",
+        "image": "images/pequods.jpg",
+        "description": "Casual, brick-walled pizza pub where deep-dish pies with caramelized crusts are served until late.",
+        "address": "2207 N Clybourn Ave, Chicago, IL 60614",
+        "hours": "11 am - 11 pm"
+    }, {
+        "name": "8. The Aviary",
+        "image": "images/aviary.jpg",
+        "description": "Swanky cocktail lounge with intricate drinks in super creative presentations & clever small bites.",
+        "address": "955 W Fulton Market, Chicago, IL 60607",
+        "hours": "11 am - 11 pm"
+    },
+    {
+        "name": "9. Floriole",
+        "image": "images/floriole.jpg",
+        "description": "Bright cafe & bakery offering lunch & an array of European-style pastries in sleek, airy surrounds.",
+        "address": "1220 W Webster Ave, Chicago, IL 60614",
+        "hours": "11 am - 11 pm"
+    },
+    {
+        "name": "10. Ramen Takeya",
+        "image": "images/ramentakeya.jpg",
+        "description": "Hip Japanese joint offering ramen, small plates & cocktails in a low-lit space with wood tables.",
+        "address": "819 W Fulton Market, Chicago, IL 60607",
+        "hours": "11 am - 11 pm"
+    },
+    {
+        "name": "11. Coda di Volpe",
+        "image": "images/codadivolpe.jpg",
+        "description": "Southern Italian fare including pizza, pasta, steak & seafood served in chic digs with a bar.",
+        "address": "3335 N Southport Ave, Chicago, IL 60657",
+        "hours": "11 am - 11 pm"
+    }
 ];
 
-var request = {
-  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
-};
+
 
 
 
@@ -43,11 +108,8 @@ for (var i = 0; i < restaurants.length; i++) {
 	$('#allTiles').append(newTile);
 
 }
-//var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
 
-// var newTile = template(bigStar);
 
-// append html to the DOM
 
 
 
@@ -59,10 +121,28 @@ $(".tile").hover(function(){
 
 
 
-//how do I tie to HTML?
-//how do I input image?
-//how do I input API data?
 
+// API KEY AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
+
+// big star Place ID
+var request = {
+  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
+};
+
+// attach the Place ID + API Key
+var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
+
+//var placeBigStar = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJwwvDb8fSD4gRb54qO3OOpVA=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs'
+
+
+
+//function getPlaceInfo(restaurant){
+
+    //$.get(PLACEID_API + request + '=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs', function(searchResult) {
+        //searchResult.open_hours
+    //}
+
+//}
 
 // initialize the configuration of map
 function initMap(){
@@ -98,7 +178,7 @@ function initMap(){
 
 
         	// custom icon variable
-        	var circleIcon = '<img src="images/icon.png">'
+        	var circleIcon = "images/icon.png";
 
         	// array of markers!!
 
@@ -176,7 +256,16 @@ function initMap(){
         	}
 		}
 
+//var service = new google.maps.places.PlacesService(map);
+//service.getDetails(request, callback);
 
+//function callback(place, status) {
+     // if (status == google.maps.places.PlacesServiceStatus.OK) {
+     //   createMarker(place);
+     // }
+
+    //console.log(place);
+ //}
 // place ID
 // opening_hours
 // open_now boolean

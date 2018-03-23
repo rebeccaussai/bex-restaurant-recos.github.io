@@ -8,10 +8,10 @@
 </head>
 <body>
 	<h1> top restaurants in chicago </h1>
-	<div id="allTiles">
+	<div class="allTiles">
 
-		<!--div class="tile">
-			<h3>1. Big Star</h3>
+		<div class="tile"> 
+			<h3>1. Big Star</h3> 
 			<img class="tile_img" src= "images/big_star.jpg">
 			<p> Mexican street food, plus margaritas &amp; other drinks fuel a lively scene at this funky hangout. </p>
 			<P class="sub-title"> Address </P>
@@ -20,8 +20,8 @@
 			<p> 11 am - 11 pm</p>
 		</div>
 
-		<div class="tile">
-			<h3>2. Mott St</h3>
+		<div class="tile"> 
+			<h3>2. Mott St</h3> 
 			<img class="tile_img" src= "images/mottst.jpg">
 			<p> Asian-inspired plates &amp; craft cocktails served amid funky furnishings &amp; communal tables. </p>
 			<P class="sub-title"> Address </P>
@@ -30,8 +30,8 @@
 			<p> 11 am - 11 pm</p>
 		</div>
 
-		<div class="tile">
-			<h3>3. Monteverde</h3>
+		<div class="tile"> 
+			<h3>3. Monteverde</h3> 
 			<img class="tile_img" src= "images/monteverde.jpg">
 			<p> Stylish spot serving refined, contemporary Italian fare such as fresh pastas, plus global wines. </p>
 			<P class="sub-title"> Address </P>
@@ -40,15 +40,15 @@
 			<p> 11 am - 11 pm</p>
 		</div>
 
-		<div class="tile">
-			<h3>4. Beermiscuous</h3>
+		<div class="tile"> 
+			<h3>4. Beermiscuous</h3> 
 			<img class="tile_img" src= "images/beermiscuous.jpg">
 			<p> Beer-oriented spot offering 300+ craft brews in a hip, rustic space with a cafe vibe &amp; free WiFi. </p>
 			<P class="sub-title"> Address </P>
 			<p> 2812 N Lincoln Ave, Chicago, IL 60657</p>
 			<P class="sub-title"> Hours </P>
 			<p> 11 am - 11 pm</p>
-		</div-->
+		</div>
 
 	</div>
 
@@ -56,15 +56,17 @@
 
 	<!-- testing a handlebars template -->
 	<script id="restaurant-template" type="text/x-handlebars-template">
-		<div class="tile">
-			<h3>{{name}}</h3>
-			<img class="tile_img" src="{{image}}" >
+	<div id="allTiles">
+		<div class="tile"> 
+			<h3>{{name}}</h3> 
+			<img class="tile_img" {{image}} >
 			<p> {{description}} </p>
 			<P class="sub-title"> Address </P>
 			<p> {{address}}</p>
 			<P class="sub-title"> Hours </P>
 			<p>{{hours}}</p>
 		</div>
+	</div>
 	</script>
 
 	<div id="map"</div>
@@ -73,8 +75,6 @@
 	<script src="js/handlebars-v4.0.11b.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="js/main.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs&libraries=places&callback=initMap"></script>
-
-    <!-- <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs&callback=initMap"></script> -->
+    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs&callback=initMap"></script>
 </body>
 </html>
