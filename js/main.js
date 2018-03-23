@@ -24,60 +24,60 @@ var restaurants = [
         "image": "images/monteverde.jpg",
         "description": "Stylish spot serving refined, contemporary Italian fare such as fresh pastas, plus global wines.",
         "address": "1020 W Madison St, Chicago, IL 60607",
-        "hours": "11 am - 11 pm"  
-    }, 
+        "hours": "11 am - 11 pm"
+    },
     {
         "name": "4. Beermiscuous",
         "image": "images/beermiscuous.jpg",
         "description": "Beer-oriented spot offering 300+ craft brews in a hip, rustic space with a cafe vibe &amp; free WiFi.",
         "address": "2812 N Lincoln Ave, Chicago, IL 60657",
-        "hours": "11 am - 11 pm"  
+        "hours": "11 am - 11 pm"
     },
     {
         "name": "5. DMK",
         "image": "images/dmk.jpg",
         "description": "Trendy scene where creative burgers go with fries, housemade sodas, craft cocktails & lots of beers.",
         "address": "2954 N Sheffield Ave, Chicago, IL 60657",
-        "hours": "11 am - 11 pm"   
+        "hours": "11 am - 11 pm"
     }, {
         "name": "6. Giant",
         "image": "images/giant.jpg",
         "description": "Seasonal New American plates & craft cocktails are served in a funky storefront with local art.",
         "address": "3209 W Armitage Ave, Chicago, IL 60647",
-        "hours": "11 am - 11 pm"          
+        "hours": "11 am - 11 pm"
     }, {
         "name": "7. Pequod's",
         "image": "images/pequods.jpg",
         "description": "Casual, brick-walled pizza pub where deep-dish pies with caramelized crusts are served until late.",
         "address": "2207 N Clybourn Ave, Chicago, IL 60614",
-        "hours": "11 am - 11 pm"      
+        "hours": "11 am - 11 pm"
     }, {
         "name": "8. The Aviary",
         "image": "images/aviary.jpg",
         "description": "Swanky cocktail lounge with intricate drinks in super creative presentations & clever small bites.",
         "address": "955 W Fulton Market, Chicago, IL 60607",
-        "hours": "11 am - 11 pm"       
-    }, 
+        "hours": "11 am - 11 pm"
+    },
     {
         "name": "9. Floriole",
         "image": "images/floriole.jpg",
         "description": "Bright cafe & bakery offering lunch & an array of European-style pastries in sleek, airy surrounds.",
         "address": "1220 W Webster Ave, Chicago, IL 60614",
-        "hours": "11 am - 11 pm"       
+        "hours": "11 am - 11 pm"
     },
     {
         "name": "10. Ramen Takeya",
         "image": "images/ramentakeya.jpg",
         "description": "Hip Japanese joint offering ramen, small plates & cocktails in a low-lit space with wood tables.",
         "address": "819 W Fulton Market, Chicago, IL 60607",
-        "hours": "11 am - 11 pm"    
+        "hours": "11 am - 11 pm"
     },
     {
         "name": "11. Coda di Volpe",
         "image": "images/codadivolpe.jpg",
         "description": "Southern Italian fare including pizza, pasta, steak & seafood served in chic digs with a bar.",
         "address": "3335 N Southport Ave, Chicago, IL 60657",
-        "hours": "11 am - 11 pm"     
+        "hours": "11 am - 11 pm"
     }
 ];
 
@@ -108,7 +108,6 @@ for (var i = 0; i < restaurants.length; i++) {
 
 	var newTile = template(restaurant);
 
-
 	$('#allTiles').append(newTile);
 
 }
@@ -126,6 +125,8 @@ for (var i = 0; i < restaurants.length; i++) {
 $(".tile").hover(function(){
     $(this).animate({down: '20px'});
 });
+
+
 
 
 
