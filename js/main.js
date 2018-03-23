@@ -114,12 +114,6 @@ for (var i = 0; i < restaurants.length; i++) {
 }
 
 
-
-
-
-
-
-
 //var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
 
 // var newTile = template(bigStar);
