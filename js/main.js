@@ -82,6 +82,9 @@ var restaurants = [
 ];
 
 
+var request = {
+  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
+};
 
 
 
@@ -105,6 +108,7 @@ for (var i = 0; i < restaurants.length; i++) {
 
 	var newTile = template(restaurant);
 
+
 	$('#allTiles').append(newTile);
 
 }
@@ -113,12 +117,21 @@ for (var i = 0; i < restaurants.length; i++) {
 
 
 
+
+
+
+//var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
+
+// var newTile = template(bigStar);
+
+// append html to the DOM
+
+
+
 // animate tiles - not currently working up or down
 $(".tile").hover(function(){
     $(this).animate({down: '20px'});
 });
-
-
 
 
 
