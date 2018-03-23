@@ -82,12 +82,6 @@ var restaurants = [
 ];
 
 
-var request = {
-  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
-};
-
-
-
 // 3. is this where my object constructor goes????
 //constructor function to create a restaurant tile object
 var Restaurant = function (name, image, description, address, hours) {
@@ -114,9 +108,7 @@ for (var i = 0; i < restaurants.length; i++) {
 
 
 //var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
-
 // var newTile = template(bigStar);
-
 // append html to the DOM
 
 
@@ -128,14 +120,6 @@ $(".tile").hover(function(){
 
 
 
-
-
-// API KEY AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
-
-// big star Place ID
-var request = {
-  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
-};
 
 // attach the Place ID + API Key
 var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
@@ -152,6 +136,27 @@ var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?place
 
 //}
 
+
+// API KEY AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
+
+// big star Place ID
+// create an array of objects
+var request = {
+  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
+};
+
+// MOTT ST. ChIJKRH5t9rSD4gRCcziAsL8HuI
+// MONTEVERDE ChIJMViM4dssDogRdmIJH2z_Q10
+// BEERMISCUOUS ChIJW6ETSv7SD4gRU81ef2JzAJ8
+// DMK ChIJWTqfEqrTD4gRtKxm-0I-QBo
+// GIANT ChIJDQ-5B2jND4gR8fRYgBpWAzQ
+// PEQUOD'S ChIJQ6vcPuTSD4gRTbyKKQufF_o
+// THE AVIARY ChIJ3e31ltAsDogRZ-NnsEKpkTg
+// FLORIOLE ChIJY57TauLSD4gRLXy2EGwagpE
+// RAMEN TAKEYA ChIJKafaHdAsDogRLfmNPT6NdR8
+// CODA DI VOLPE ChIJTaVCelHSD4gR1kBqfAgvLyU
+
+
 // initialize the configuration of map
 function initMap(){
 
@@ -164,7 +169,37 @@ function initMap(){
 			//new map
 			var map = new google.maps.Map(document.getElementById('map'), options);
 
+			// place id
+			var service = new google.maps.places.PlacesService(map);
+			// right now it's only calling big star
+			service.getDetails(request, callback);
 
+			function callback(place, status) {
+			     if (status == google.maps.places.PlacesServiceStatus.OK) {
+			       //createMarker(place);
+						 // look up API for doing this by name rather than IDs, iterate through array of Names
+						 // make each api callback
+						 // service.getdetails should be in a loop
+						 console.log(place.opening_hours);
+						 console.log(place.opening_hours.open_now);
+                         console.log(place.formatted_address);
+						 // put place.opening_hours.open_now in
+
+			     }
+
+			    console.log(place);
+					//for (var i = 0; i < restaurants.length; i++) {
+						//var r = restaurants[i];
+
+						// update the parameters to match the tree structure what's returned from api
+						var restaurant = new Restaurant(place.name, r.image, r.description, r.address, r.hours);
+
+						var newTile = template(restaurant);
+
+						$('#allTiles').append(newTile);
+
+					//}
+			 }
 			// add marker, add to map you want to add it to which is 'map'
 			/*
 			var marker = new google.maps.Marker({
@@ -186,7 +221,7 @@ function initMap(){
 
 
         	// custom icon variable
-        	var circleIcon = "images/icon.png";
+        	var circleIcon = 'https://github.com/rebeccaussai/bex-restaurant-recos.github.io/blob/master/images/icon.png';
 
         	// array of markers!!
 
@@ -208,7 +243,7 @@ function initMap(){
         			coords: {lat: 41.933, lng: -87.659},
         			content: '<h3>beermiscuous</h3>',
         			// trying to add custom icon
-        			//iconImage: circleIcon
+        			//iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/icon.png'
 
         		}
         	];
