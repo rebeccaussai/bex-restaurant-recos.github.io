@@ -4,46 +4,10 @@ var source = $('#restaurant-template').html();
 // 2. use handlebars compile
 var template = Handlebars.compile(source);
 
-var restaurants = [
-	{
-		"name": "1. Big Star",
-		"image": "images/big_star.jpg",
-		"description": "Mexican street food, plus margaritas & other drinks fuel a lively scene at this funky hangout.",
-		"address": "1531 N Damen Ave, Chicago, IL 60622",
-		"hours": "11 am - 11 pm"
-	},
-    {
-        "name": "2. Mott St.",
-        "image": "images/mottst.jpg",
-        "description": "Asian-inspired plates &amp; craft cocktails served amid funky furnishings &amp; communal tables.",
-        "address": "1401 N Ashland Ave, Chicago, IL 60622",
-        "hours": "11 am - 11 pm"
-    },
-    {
-        "name": "3. Monteverde",
-        "image": "images/monteverde.jpg",
-        "description": "Stylish spot serving refined, contemporary Italian fare such as fresh pastas, plus global wines.",
-        "address": "1020 W Madison St, Chicago, IL 60607",
-        "hours": "11 am - 11 pm"  
-    }, 
-    {
-        "name": "4. Beermiscuous",
-        "image": "images/beermiscuous.jpg",
-        "description": "Beer-oriented spot offering 300+ craft brews in a hip, rustic space with a cafe vibe &amp; free WiFi.",
-        "address": "2812 N Lincoln Ave, Chicago, IL 60657",
-        "hours": "11 am - 11 pm"  
-    }
-];
-
-var request = {
-  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
-};
-
-
 
 // 3. is this where my object constructor goes????
 //constructor function to create a restaurant tile object
-var Restaurant = function (name, image, description, address, hours) {
+var restaurant = function (name, image, description, address, hours) {
 	this.name = name;
 	this.image = image;
 	this.description = description;
@@ -52,30 +16,20 @@ var Restaurant = function (name, image, description, address, hours) {
 };
 
 // 4. pass it into template
+var newTile = template(restaurant);
 
 // add a new tile
-for (var i = 0; i < restaurants.length; i++) {
-	var r = restaurants[i];
+var bigStar = new restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
 
-	var restaurant = new Restaurant(r.name, r.image, r.description, r.address, r.hours);
-
-	var newTile = template(restaurant);
-
-	$('#allTiles').append(newTile);
-
-}
-//var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
-
-// var newTile = template(bigStar);
-
-// append html to the DOM
+// append html to the DOM 
+$('#allTiles').html(newTile);
 
 
 
-// animate tiles - not currently working up or down
+// animate tiles - not currently working up or down 
 $(".tile").hover(function(){
     $(this).animate({down: '20px'});
-});
+}); 
 
 
 
@@ -119,7 +73,7 @@ function initMap(){
 
 
         	// custom icon variable
-        	var circleIcon = "images/icon.png";
+        	var circleIcon = '<img src="images/icon.png">'
 
         	// array of markers!!
 
@@ -128,11 +82,11 @@ function initMap(){
         			coords: {lat: 41.909, lng: -87.677},
         			iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
         			content: '<h3>Big Star</h3>'
-        		},
+        		}, 
         		{
         			coords: {lat: 41.907, lng: -87.667},
         			content: '<h3> Mott St. </h3>'
-        		},
+        		}, 
         		{
         			coords: {lat: 41.882, lng: -87.652},
         			content: '<h3>Monteverde</h3>'
@@ -142,7 +96,7 @@ function initMap(){
         			content: '<h3>beermiscuous</h3>',
         			// trying to add custom icon
         			//iconImage: circleIcon
-
+        			
         		}
         	];
 
@@ -150,7 +104,7 @@ function initMap(){
         	for (var i=0; i < markers.length; i++) {
         		//add marker
         		addMarker(markers[i]);
-
+        		
         	}
 
         	// old hardcode way
@@ -174,7 +128,7 @@ function initMap(){
 	          		map: map,
 	          		//icon: props.iconImage
 
-	        	});
+	        	});   
 	        // check for custom icon
 	        	if(props.iconImage){
 	        		// set icon image
@@ -193,7 +147,7 @@ function initMap(){
         			marker.addListener('click', function(){
         					infoWindow.open(map, marker);
         			});
-	        	}
+	        	}   		
         	}
 		}
 
