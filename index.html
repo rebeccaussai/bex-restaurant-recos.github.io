@@ -51,10 +51,12 @@
 		</div-->
 
 	</div>
+	<div id="API_tiles">
+	</div>
 
 
 
-	<!-- testing a handlebars template -->
+	<!-- handlebars template for non-API tiles -->
 	<script id="restaurant-template" type="text/x-handlebars-template">
 		<div class="tile">
 			<h3>{{name}}</h3>
@@ -64,6 +66,19 @@
 			<p> {{address}}</p>
 			<P class="sub-title"> Hours </P>
 			<p>{{hours}}</p>
+		</div>
+	</script>
+
+	<!-- handlebars template for API tiles -->
+	<script id="restaurant-API-template" type="text/x-handlebars-template">
+		<div class="tile">
+			<h3>{{name}}</h3>
+			<img class="tile_img" src="images/FPO_image.jpg" >
+			<p> "description goes here" </p>
+			<P class="sub-title"> Address </P>
+			<p> {{address}}</p>
+			<P class="sub-title"> Hours </P>
+			<p>{{open_now}}</p>
 		</div>
 	</script>
 

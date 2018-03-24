@@ -5,13 +5,13 @@ var source = $('#restaurant-template').html();
 var template = Handlebars.compile(source);
 
 var restaurants = [
-	{
-		"name": "1. Big Star",
-		"image": "images/big_star.jpg",
-		"description": "Mexican street food, plus margaritas & other drinks fuel a lively scene at this funky hangout.",
-		"address": "1531 N Damen Ave, Chicago, IL 60622",
-		"hours": "11 am - 11 pm"
-	},
+		{
+			"name": "1. Big Star",
+			"image": "images/big_star.jpg",
+			"description": "Mexican street food, plus margaritas & other drinks fuel a lively scene at this funky hangout.",
+			"address": "1531 N Damen Ave, Chicago, IL 60622",
+			"hours": "11 am - 11 pm"
+		},
     {
         "name": "2. Mott St.",
         "image": "images/mottst.jpg",
@@ -39,19 +39,22 @@ var restaurants = [
         "description": "Trendy scene where creative burgers go with fries, housemade sodas, craft cocktails & lots of beers.",
         "address": "2954 N Sheffield Ave, Chicago, IL 60657",
         "hours": "11 am - 11 pm"
-    }, {
+    },
+		{
         "name": "6. Giant",
         "image": "images/giant.jpg",
         "description": "Seasonal New American plates & craft cocktails are served in a funky storefront with local art.",
         "address": "3209 W Armitage Ave, Chicago, IL 60647",
         "hours": "11 am - 11 pm"
-    }, {
+    },
+		{
         "name": "7. Pequod's",
         "image": "images/pequods.jpg",
         "description": "Casual, brick-walled pizza pub where deep-dish pies with caramelized crusts are served until late.",
         "address": "2207 N Clybourn Ave, Chicago, IL 60614",
         "hours": "11 am - 11 pm"
-    }, {
+    },
+		{
         "name": "8. The Aviary",
         "image": "images/aviary.jpg",
         "description": "Swanky cocktail lounge with intricate drinks in super creative presentations & clever small bites.",
@@ -107,11 +110,6 @@ for (var i = 0; i < restaurants.length; i++) {
 }
 
 
-//var bigStar = new Restaurant("Big Star", "images/big_star.jpg", "description of big star", "123 Main St. Chicago, IL 60614", "API data11 am - 11 pm");
-// var newTile = template(bigStar);
-// append html to the DOM
-
-
 
 // animate tiles - not currently working up or down
 $(".tile").hover(function(){
@@ -122,18 +120,15 @@ $(".tile").hover(function(){
 
 
 // attach the Place ID + API Key
-var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
-
+//var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
 //var placeBigStar = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJwwvDb8fSD4gRb54qO3OOpVA=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs'
 
 
 
 //function getPlaceInfo(restaurant){
-
     //$.get(PLACEID_API + request + '=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs', function(searchResult) {
         //searchResult.open_hours
     //}
-
 //}
 
 
@@ -141,9 +136,24 @@ var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?place
 
 // big star Place ID
 // create an array of objects
-var request = {
-  placeId: 'ChIJwwvDb8fSD4gRb54qO3OOpVA'
-};
+var request = [
+	{
+		// Cindy's
+		placeId: 'ChIJeYbaOKQsDogRfJrgIMgDNvE'
+	},
+	{
+		// Alinea
+		placeId: 'ChIJuyI60yLTD4gROwTWENq1He0'
+	},
+	{
+		// Park & Field
+		placeId: 'ChIJQxzTUmzND4gR-otDK2yG-DA'
+	},
+	{
+		//small cheval
+		placeId: 'ChIJA_1Ak77SD4gR8aARVOYilzw'
+	}
+];
 
 // MOTT ST. ChIJKRH5t9rSD4gRCcziAsL8HuI
 // MONTEVERDE ChIJMViM4dssDogRdmIJH2z_Q10
@@ -155,6 +165,18 @@ var request = {
 // FLORIOLE ChIJY57TauLSD4gRLXy2EGwagpE
 // RAMEN TAKEYA ChIJKafaHdAsDogRLfmNPT6NdR8
 // CODA DI VOLPE ChIJTaVCelHSD4gR1kBqfAgvLyU
+
+// 1. get html for 2nd div that's for API tiles
+var source = $('#restaurant-API-template').html();
+// 2. use handlebars compile
+var template = Handlebars.compile(source);
+// 3. is this where my object constructor goes????
+//constructor function to create a restaurant tile object
+var RestaurantAPI = function (name, address, open_now) {
+	this.name = name;
+	this.address = address;
+	this.open_now = open_now;
+};
 
 
 // initialize the configuration of map
@@ -172,34 +194,36 @@ function initMap(){
 			// place id
 			var service = new google.maps.places.PlacesService(map);
 			// right now it's only calling big star
-			service.getDetails(request, callback);
+			for (var i = 0; i < request.length; i++){
+				service.getDetails(request[i], callback);
 
 			function callback(place, status) {
 			     if (status == google.maps.places.PlacesServiceStatus.OK) {
 			       //createMarker(place);
+						 console.log(place);
 						 // look up API for doing this by name rather than IDs, iterate through array of Names
 						 // make each api callback
 						 // service.getdetails should be in a loop
-						 console.log(place.opening_hours);
-						 console.log(place.opening_hours.open_now);
-                         console.log(place.formatted_address);
+						 //console.log(place.opening_hours);
+						 //console.log(place.opening_hours.open_now);
+             //console.log(place.formatted_address);
 						 // put place.opening_hours.open_now in
 
 			     }
 
-			    console.log(place);
 					//for (var i = 0; i < restaurants.length; i++) {
 						//var r = restaurants[i];
 
 						// update the parameters to match the tree structure what's returned from api
-						var restaurant = new Restaurant(place.name, r.image, r.description, r.address, r.hours);
+						var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.open_now);
 
 						var newTile = template(restaurant);
 
-						$('#allTiles').append(newTile);
+						$('#API_tiles').append(newTile);
 
 					//}
 			 }
+		 }
 			// add marker, add to map you want to add it to which is 'map'
 			/*
 			var marker = new google.maps.Marker({
@@ -309,9 +333,7 @@ function initMap(){
 
     //console.log(place);
  //}
-// place ID
-// opening_hours
-// open_now boolean
+
 
 
 // https://maps.googleapis.com/maps/api/place/details/output?parameters
