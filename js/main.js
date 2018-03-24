@@ -245,7 +245,7 @@ function initMap(){
 
 
         	// custom icon variable
-        	var circleIcon = 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_01.png';
+        	var circleIcon = 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_02.png';
 
         	// array of markers!!
 
@@ -257,17 +257,54 @@ function initMap(){
         		},
         		{
         			coords: {lat: 41.907, lng: -87.667},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_02.png',
         			content: '<h3> Mott St. </h3>'
         		},
         		{
         			coords: {lat: 41.882, lng: -87.652},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_03.png',
         			content: '<h3>Monteverde</h3>'
         		},
 						{
-						coords: {lat: 41.933, lng: -87.659},
-						content: '<h3>beermiscuous</h3>',
-						// trying to add custom icon
-						iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_01.png'
+							coords: {lat: 41.933, lng: -87.659},
+							content: '<h3>beermiscuous</h3>',
+							// trying to add custom icon
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_04.png'
+						},
+						{
+							coords: {lat: 41.9369, lng: -87.6540},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_05.png',
+							content: '<h3>DMK</h3>'
+						},
+						{
+							coords: {lat: 41.9174, lng: -87.7075},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_06.png',
+							content: '<h3>Giant</h3>'
+						},
+						{
+							coords: {lat: 41.9221, lng: -87.6642},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_07.png',
+							content: '<h3>Pequods</h3>'
+						},
+						{
+							coords: {lat: 41.8868, lng: -87.6520},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_08.png',
+							content: '<h3>The Aviary</h3>'
+						},
+						{
+							coords: {lat: 41.9220, lng: -87.6592},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_09.png',
+							content: '<h3>Floriole</h3>'
+						},
+						{
+							coords: {lat: 41.8868, lng: -87.6484},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_10.png',
+							content: '<h3>Ramen Takeya</h3>'
+						},
+						{
+							coords: {lat: 41.9428, lng: -87.6636},
+							iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_11.png',
+							content: '<h3>Coda di Volpe</h3>'
 						}
         	];
 
