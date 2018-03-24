@@ -245,14 +245,14 @@ function initMap(){
 
 
         	// custom icon variable
-        	var circleIcon = 'https://github.com/rebeccaussai/bex-restaurant-recos.github.io/blob/master/images/icon.png';
+        	var circleIcon = 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_01.png';
 
         	// array of markers!!
 
         	var markers = [
         		{
         			coords: {lat: 41.909, lng: -87.677},
-        			iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        			iconImage:'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_01.png',
         			content: '<h3>Big Star</h3>'
         		},
         		{
@@ -263,13 +263,12 @@ function initMap(){
         			coords: {lat: 41.882, lng: -87.652},
         			content: '<h3>Monteverde</h3>'
         		},
-        		{
-        			coords: {lat: 41.933, lng: -87.659},
-        			content: '<h3>beermiscuous</h3>',
-        			// trying to add custom icon
-        			//iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/icon.png'
-
-        		}
+						{
+						coords: {lat: 41.933, lng: -87.659},
+						content: '<h3>beermiscuous</h3>',
+						// trying to add custom icon
+						iconImage: 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_01.png'
+						}
         	];
 
         	// loop through markers
