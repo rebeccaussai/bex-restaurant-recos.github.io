@@ -85,8 +85,7 @@ var restaurants = [
 ];
 
 
-// 3. is this where my object constructor goes????
-//constructor function to create a restaurant tile object
+// 3.constructor function to create a restaurant tile object
 var Restaurant = function (name, image, description, address, hours) {
 	this.name = name;
 	this.image = image;
@@ -96,7 +95,6 @@ var Restaurant = function (name, image, description, address, hours) {
 };
 
 // 4. pass it into template
-
 // add a new tile
 for (var i = 0; i < restaurants.length; i++) {
 	var r = restaurants[i];
@@ -111,14 +109,30 @@ for (var i = 0; i < restaurants.length; i++) {
 
 
 
-// animate tiles - not currently working up or down
+// animate tiles
 $(".tile").hover(function(){
-    $(this).animate({down: '20px'});
+    $(this).animate({top: '-10px'}, 'fast');
 });
 
+$(".tile").mouseleave(function(){
+    $(this).animate({top: '0px'}, 'fast');
+});
 
+// try to get today's day of week for hours
+function getTodaysDay() {
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
 
-
+    var n = weekday[d.getDay()];
+    document.getElementById("demo").innerHTML = n;
+}
 // attach the Place ID + API Key
 //var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
 //var placeBigStar = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJwwvDb8fSD4gRb54qO3OOpVA=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs'
@@ -134,7 +148,7 @@ $(".tile").hover(function(){
 
 // API KEY AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
 
-// big star Place ID
+
 // create an array of objects
 var request = [
 	{
@@ -172,10 +186,43 @@ var source = $('#restaurant-API-template').html();
 var template = Handlebars.compile(source);
 // 3. is this where my object constructor goes????
 //constructor function to create a restaurant tile object
-var RestaurantAPI = function (name, address, open_now) {
+var RestaurantAPI = function (name, address, weekday_hours, open_now) {
 	this.name = name;
 	this.address = address;
-	this.open_now = open_now;
+	this.isOpen = open_now;
+	this.weekday_hours = weekday_hours;
+	this.open_now = function() {
+			if (this.isOpen === true){
+				return "yas! it's open!";
+			} else {
+				return "sit tight, still closed :(";
+			}
+	this.dayOfWeekHours = function(){
+		//match -- get today's day of week
+		//loop through every item in array
+		// check to see if item has a string match with today's day of week
+		// if they match, return those hours
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    var n = weekday[d.getDay()];
+    document.getElementById("demo").innerHTML = n;
+		console.log(n);
+
+		}
+		if (n === "Sunday") {
+			return place.opening_hours.weekday_text[0]
+		} else if (n === "Monday"){
+			return place.opening_hours.weekday_text[1]
+		}
+	}
 };
 
 
@@ -215,7 +262,8 @@ function initMap(){
 						//var r = restaurants[i];
 
 						// update the parameters to match the tree structure what's returned from api
-						var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.open_now);
+						// add weekday hours
+						var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.opening_hours.weekday_text[5], place.opening_hours.open_now);
 
 						var newTile = template(restaurant);
 
