@@ -4,13 +4,14 @@
 	<meta charset="UTF=8">
 	<title>bex's restaurants</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
 </head>
 <body>
 	<h1> top restaurants in chicago </h1>
 	<p id="demo"></p>
 	<div id="allTiles">
-
+		<!-- old manual entry before Handlebars was implemented -->
 		<!--div class="tile">
 			<h3>1. Big Star</h3>
 			<img class="tile_img" src= "images/big_star.jpg">
@@ -72,7 +73,7 @@
 
 	<!-- handlebars template for API tiles -->
 	<script id="restaurant-API-template" type="text/x-handlebars-template">
-		<div class="tile">
+		<div class="tile" id="tileAPI">
 			<h3>{{name}}</h3>
 			<img class="tile_img" src="images/FPO_image.jpg" >
 			<p> delicious description goes here </p>
@@ -87,9 +88,13 @@
 	<div id="map"</div>
 
 	<!-- js -->
+	<!-- handlebars library -->
 	<script src="js/handlebars-v4.0.11b.js"></script>
+	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- main.js file -->
 	<script src="js/main.js"></script>
+	<!-- google maps and places API -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs&libraries=places&callback=initMap"></script>
 
 </body>

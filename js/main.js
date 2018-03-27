@@ -1,3 +1,14 @@
+// FINAL PROJECT details
+// created 2 instances for Handlebars:
+	// the top div of 11 restaurant tiles had manually curated content
+	// the bottom div of 4 tiles utiilized Google Place ID API to input with name, address, hours, open/closed status
+	// i was trying to get the hours for 'today' to appear but didn't end up finishing out this construct to match 'today' with the respective day in google place ID API
+// tiles animate on hover using jQuery (though I'm not sure why the bottom tiles never worked)
+// the map at the bottom utilizes Google Maps API
+	// the markers used custom icons and display the location name on click
+
+
+
 // handlebars
 // 1. get html
 var source = $('#restaurant-template').html();
@@ -118,6 +129,7 @@ $(".tile").mouseleave(function(){
     $(this).animate({top: '0px'}, 'fast');
 });
 
+
 // try to get today's day of week for hours
 function getTodaysDay() {
     var d = new Date();
@@ -133,20 +145,13 @@ function getTodaysDay() {
     var n = weekday[d.getDay()];
     document.getElementById("demo").innerHTML = n;
 }
-// attach the Place ID + API Key
-//var PLACEID_API = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
-//var placeBigStar = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJwwvDb8fSD4gRb54qO3OOpVA=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs'
 
 
 
 //function getPlaceInfo(restaurant){
     //$.get(PLACEID_API + request + '=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs', function(searchResult) {
-        //searchResult.open_hours
     //}
 //}
-
-
-// API KEY AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
 
 
 // create an array of objects
@@ -184,8 +189,7 @@ var request = [
 var source = $('#restaurant-API-template').html();
 // 2. use handlebars compile
 var template = Handlebars.compile(source);
-// 3. is this where my object constructor goes????
-//constructor function to create a restaurant tile object
+// constructor function to create a restaurant tile object
 var RestaurantAPI = function (name, address, weekday_hours, open_now) {
 	this.name = name;
 	this.address = address;
@@ -198,8 +202,12 @@ var RestaurantAPI = function (name, address, weekday_hours, open_now) {
 				return "sit tight, still closed :(";
 			}
 	this.dayOfWeekHours = function(){
-		//match -- get today's day of week
-		//loop through every item in array
+		// didn't get the following function completed / working...
+		// JS "get day" https://www.w3schools.com/jsref/jsref_getday.asp
+		// string match https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+
+		// match -- get today's day of week
+		// loop through every item in array
 		// check to see if item has a string match with today's day of week
 		// if they match, return those hours
     var d = new Date();
@@ -216,6 +224,7 @@ var RestaurantAPI = function (name, address, weekday_hours, open_now) {
     document.getElementById("demo").innerHTML = n;
 		console.log(n);
 
+		// somehow loop through days of week to see if today matches one of the 7 days
 		}
 		if (n === "Sunday") {
 			return place.opening_hours.weekday_text[0]
@@ -224,52 +233,41 @@ var RestaurantAPI = function (name, address, weekday_hours, open_now) {
 		}
 	}
 };
+// epoch and unix timestamp converter https://www.epochconverter.com/
 
 
+// MY GOOGLE API KEY AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
 // initialize the configuration of map
 function initMap(){
 
-			// map options
+			// map options. need to include zoom and center
 			var options = {
 				zoom: 12,
 				center: {lat: 41.905293, lng: -87.637228}
 			}
 
-			//new map
+			// new map
 			var map = new google.maps.Map(document.getElementById('map'), options);
 
 			// place id
+			// documentation https://developers.google.com/places/web-service/place-id
 			var service = new google.maps.places.PlacesService(map);
-			// right now it's only calling big star
+			// loop through every Place ID in variable 'request'
 			for (var i = 0; i < request.length; i++){
 				service.getDetails(request[i], callback);
 
 			function callback(place, status) {
 			     if (status == google.maps.places.PlacesServiceStatus.OK) {
-			       //createMarker(place);
 						 console.log(place);
-						 // look up API for doing this by name rather than IDs, iterate through array of Names
-						 // make each api callback
-						 // service.getdetails should be in a loop
-						 //console.log(place.opening_hours);
-						 //console.log(place.opening_hours.open_now);
-             //console.log(place.formatted_address);
-						 // put place.opening_hours.open_now in
-
 			     }
 
-					//for (var i = 0; i < restaurants.length; i++) {
-						//var r = restaurants[i];
-
 						// update the parameters to match the tree structure what's returned from api
-						// add weekday hours
+						// these are all the pieces i'm asking to return from the Place Id API
 						var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.opening_hours.weekday_text[5], place.opening_hours.open_now);
-
+						// add a new tile for this restaurant
 						var newTile = template(restaurant);
-
+						// append it to the div
 						$('#API_tiles').append(newTile);
-
-					//}
 			 }
 		 }
 			// add marker, add to map you want to add it to which is 'map'
@@ -291,17 +289,15 @@ function initMap(){
         		infoWindow.open(map, marker);
         	}); */
 
-
-        	// custom icon variable
-        	var circleIcon = 'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_02.png';
-
-        	// array of markers!!
-
+					// array of objects with all the map markers
         	var markers = [
         		{
+							// get the lat long coordinates
         			coords: {lat: 41.909, lng: -87.677},
+							// add the marker icon
         			iconImage:'https://raw.githubusercontent.com/rebeccaussai/bex-restaurant-recos.github.io/master/images/loc_01.png',
-        			content: '<h3>Big Star</h3>'
+							// this is what shows on click
+							content: '<h3>Big Star</h3>'
         		},
         		{
         			coords: {lat: 41.907, lng: -87.667},
@@ -358,9 +354,8 @@ function initMap(){
 
         	// loop through markers
         	for (var i=0; i < markers.length; i++) {
-        		//add marker
+        		// add marker
         		addMarker(markers[i]);
-
         	}
 
         	// old hardcode way
@@ -407,19 +402,5 @@ function initMap(){
         	}
 		}
 
-//var service = new google.maps.places.PlacesService(map);
-//service.getDetails(request, callback);
-
-//function callback(place, status) {
-     // if (status == google.maps.places.PlacesServiceStatus.OK) {
-     //   createMarker(place);
-     // }
-
-    //console.log(place);
- //}
-
-
-
 // https://maps.googleapis.com/maps/api/place/details/output?parameters
-// big star Place ID: ChIJwwvDb8fSD4gRb54qO3OOpVA
 // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.909368,-87.677111&radius=10&type=restaurant&key=AIzaSyDDbt1M_Y1NT5NIZ27O1y0L-PXT5-bEIjs
