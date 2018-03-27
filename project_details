@@ -1,0 +1,27 @@
+Final project details:
+
+1. Created 2 instances for Handlebars
+  a. the top div of 11 restaurant tiles had manually curated content
+  b. the bottom div of 4 tiles utitilized Google Place ID API to input with name, address, hours, open/closed status
+2. I was trying to get the hours for 'today' to appear but didn't end up finishing out this construct to match 'today' with the respective day in google place ID API
+tiles animate on hover using jQuery (though I'm not sure why the bottom tiles never worked)
+3. the map at the bottom utilizes Google Maps API
+4. the markers used custom icons and display the location name on click
+
+Other notes:
+1. Used Atom for coding
+2. Git in terminal to add/push/commit to Github
+3. Github to track commits, collaborate and merge branches
+
+Sources:
+Google Maps JS API
+https://developers.google.com/maps/documentation/javascript/tutorial
+
+Adding Place ID
+https://developers.google.com/places/web-service/place-id
+
+Adding Markers
+https://developers.google.com/maps/documentation/javascript/markers
+
+Styling the Map (couldn’t get this to work)
+https://developers.google.com/maps/documentation/javascript/styling
