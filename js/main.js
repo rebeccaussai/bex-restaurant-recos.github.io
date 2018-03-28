@@ -222,7 +222,6 @@ var RestaurantAPI = function (name, address, weekday_hours, open_now) {
 
     var n = weekday[d.getDay()];
     document.getElementById("demo").innerHTML = n;
-		console.log(n);
 
 		// somehow loop through days of week to see if today matches one of the 7 days
 		}
@@ -259,15 +258,17 @@ function initMap(){
 			function callback(place, status) {
 			     if (status == google.maps.places.PlacesServiceStatus.OK) {
 						 console.log(place);
+
+						 var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.opening_hours.periods[new Date().getDay()].open.time, place.opening_hours.open_now);
+						 // add a new tile for this restaurant
+						 var newTile = template(restaurant);
+						 // append it to the div
+						 $('#API_tiles').append(newTile);
+
 			     }
 
 						// update the parameters to match the tree structure what's returned from api
 						// these are all the pieces i'm asking to return from the Place Id API
-						var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.opening_hours.weekday_text[5], place.opening_hours.open_now);
-						// add a new tile for this restaurant
-						var newTile = template(restaurant);
-						// append it to the div
-						$('#API_tiles').append(newTile);
 			 }
 		 }
 			// add marker, add to map you want to add it to which is 'map'
