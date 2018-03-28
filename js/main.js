@@ -6,7 +6,7 @@
 // tiles animate on hover using jQuery (though I'm not sure why the bottom tiles never worked)
 // the map at the bottom utilizes Google Maps API
 	// the markers used custom icons and display the location name on click
-//https://rebeccaussai.github.io/bex-restaurant-recos.github.io/
+
 
 
 // handlebars
