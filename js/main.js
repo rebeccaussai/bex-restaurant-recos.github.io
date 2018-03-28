@@ -190,18 +190,27 @@ var source = $('#restaurant-API-template').html();
 // 2. use handlebars compile
 var template = Handlebars.compile(source);
 // constructor function to create a restaurant tile object
-var RestaurantAPI = function (name, address, weekday_hours, open_now) {
+var RestaurantAPI = function (name, address, open_now, weekday_text) {
 	this.name = name;
 	this.address = address;
 	this.isOpen = open_now;
-	this.weekday_hours = weekday_hours;
+	this.weekday_text = weekday_text;
+	//this.open_hours = open_hours;
+	//this.close_hours = close_hours;
+
+	this.hours_conversion = function() {
+			if (this.open_hours == 1100) {
+				return "11:00 am"
+			}
+	}
+
 	this.open_now = function() {
 			if (this.isOpen === true){
 				return "yas! it's open!";
 			} else {
 				return "sit tight, still closed :(";
 			}
-	this.dayOfWeekHours = function(){
+	//this.dayOfWeekHours = function(){
 		// didn't get the following function completed / working...
 		// JS "get day" https://www.w3schools.com/jsref/jsref_getday.asp
 		// string match https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
@@ -210,26 +219,30 @@ var RestaurantAPI = function (name, address, weekday_hours, open_now) {
 		// loop through every item in array
 		// check to see if item has a string match with today's day of week
 		// if they match, return those hours
-    var d = new Date();
-    var weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
 
-    var n = weekday[d.getDay()];
-    document.getElementById("demo").innerHTML = n;
+
+    // var d = new Date();
+    // var weekday = new Array(7);
+    // weekday[0] = "Sunday";
+    // weekday[1] = "Monday";
+    // weekday[2] = "Tuesday";
+    // weekday[3] = "Wednesday";
+    // weekday[4] = "Thursday";
+    // weekday[5] = "Friday";
+    // weekday[6] = "Saturday";
+		//
+    // var n = weekday[d.getDay()];
+    // document.getElementById("demo").innerHTML = n;
+
+
 
 		// somehow loop through days of week to see if today matches one of the 7 days
-		}
-		if (n === "Sunday") {
-			return place.opening_hours.weekday_text[0]
-		} else if (n === "Monday"){
-			return place.opening_hours.weekday_text[1]
-		}
+		//}
+		// if (n === "Sunday") {
+		// 	return place.opening_hours.weekday_text[0]
+		// } else if (n === "Monday"){
+		// 	return place.opening_hours.weekday_text[1]
+		// }
 	}
 };
 // epoch and unix timestamp converter https://www.epochconverter.com/
@@ -259,7 +272,9 @@ function initMap(){
 			     if (status == google.maps.places.PlacesServiceStatus.OK) {
 						 console.log(place);
 
-						 var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.opening_hours.periods[new Date().getDay()].open.time, place.opening_hours.open_now);
+						 // get open hours place.opening_hours.periods[new Date().getDay()].open.time
+						 // get close hours place.opening_hours.periods[new Date().getDay()].close.time
+						 var restaurant = new RestaurantAPI(place.name, place.formatted_address, place.opening_hours.open_now, place.opening_hours.weekday_text[new Date().getDay()-1]);
 						 // add a new tile for this restaurant
 						 var newTile = template(restaurant);
 						 // append it to the div
